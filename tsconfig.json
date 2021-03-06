@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "target": "es5",
+    "allowJs": true,
+    "baseUrl": "./",
+    "paths": {
+      "base-component": ["src/utils/BaseComponent"]
+    }
+  },
+}
