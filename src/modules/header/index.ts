@@ -1,10 +1,10 @@
 import {BaseComponent} from 'base-component';
 
 import {LoremComponent, FilterComponent} from "./components";
-import {FilterModel} from './components/filterComponent/models';
+
 import './header.scss';
 
-const filter: FilterModel = {checked: {}};
+
 
 export class Header extends BaseComponent {
     private loremContainer: HTMLBaseElement;
@@ -15,7 +15,7 @@ export class Header extends BaseComponent {
         this.loremContainer = this.container.querySelector('.header__lorem');
         this.filterContainer = this.container.querySelector('.header__filter');
         new LoremComponent(this.loremContainer);
-        new FilterComponent(this.filterContainer, filter);
+        new (FilterComponent as any)(this.filterContainer);
     }
 
     markup(): string {

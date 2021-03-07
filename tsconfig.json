@@ -4,11 +4,12 @@
     "sourceMap": true,
     "noImplicitAny": true,
     "module": "commonjs",
-    "target": "es5",
+    "target": "es3",
     "allowJs": true,
     "baseUrl": "./",
     "paths": {
-      "base-component": ["src/utils/BaseComponent"]
+      "base-component": ["src/utils/BaseComponent"],
+      "useFilter": ["src/utils/useFilter"]
     }
   },
 }
