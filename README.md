@@ -1,4 +1,4 @@
-#Test task for Metaquotes
+# Test task for Metaquotes
 
 ## Getting Started
 
