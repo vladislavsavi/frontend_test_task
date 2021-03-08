@@ -4,8 +4,6 @@ import {LoremComponent, FilterComponent} from "./components";
 
 import './header.scss';
 
-
-
 export class Header extends BaseComponent {
     private loremContainer: HTMLBaseElement;
     private filterContainer: HTMLBaseElement;

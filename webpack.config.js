@@ -10,6 +10,7 @@ module.exports = {
         alias: {
             'base-component': path.resolve(__dirname, 'src/utils/BaseComponent'),
             'useFilter': path.resolve(__dirname, 'src/utils/useFilter'),
+            'client': path.resolve(__dirname, 'src/utils/client'),
         }
     },
     module: {

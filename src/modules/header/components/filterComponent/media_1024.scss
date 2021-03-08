@@ -1,0 +1,16 @@
+@media (max-width: 1024px){
+  .filter__seasons {
+    &__button, &__wrapper {
+      flex-grow: initial;
+    }
+  }
+  .filter__status {
+    &__wrapper {
+      margin-left: 19px;
+    }
+  }
+  .filter__search_button {
+    flex-grow: initial;
+    min-width: 13vmax;
+  }
+}

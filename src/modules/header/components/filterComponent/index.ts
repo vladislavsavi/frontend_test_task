@@ -11,17 +11,44 @@ class _FilterComponent extends BaseComponent {
         super(container);
     }
 
+    mounted() {
+        this.parseCheckboxes();
+        this.parseSelect();
+        this.parseButton();
+    }
 
-
-    render() {
-        super.render();
+    parseCheckboxes() {
         const checkboxList = document.querySelectorAll('[name="season"]');
 
         checkboxList.forEach(elem => elem.addEventListener('click', (e) => {
             const value = (e.target as HTMLInputElement).value;
             this.filter.seasons[value] = !this.filter.seasons[value];
-            this.filter.save();
         }));
+    }
+
+    parseSelect() {
+        const selectWrapper = document.querySelector('.filter__select');
+        const selectItems = document.querySelectorAll('[name="status"]');
+
+        selectWrapper.addEventListener('click', (e) => {
+            e.stopPropagation();
+            selectWrapper.classList.add('filter__select_open')
+        });
+        window.addEventListener('click', (e) => {
+            e.stopPropagation();
+            selectWrapper.classList.remove('filter__select_open');
+        });
+
+        selectItems.forEach(elem => elem.addEventListener('click', (e) => {
+            const value = (e.target as HTMLInputElement).value;
+            this.filter.status = value as 'All statuses' | 'Alive' | 'Presumed dead' | 'Deceased';
+            this.update();
+        }));
+    }
+
+    parseButton() {
+        const searchBtn = document.querySelector('.filter__search_button');
+        searchBtn.addEventListener('click', this.filter.save);
     }
 
     markup(): string {
@@ -85,20 +112,62 @@ class _FilterComponent extends BaseComponent {
                 <div class="filter__status__wrapper">
                       <h3>Status:</h3>
                      <div class="filter__select">
-                     
-                        <div class="filter__select__item">
-                             <input class="filter__select__input" name="filter_status" type="radio" value="Alive"/>
-                             <label class="filter__select__label" for="Season_4">Season 4</label>
+                        <input class="filter__select__value" type="text" readonly value="${this.filter.status}">
+                        <div class="filter__select__dropdown">
+                            <div class="filter__select__item">
+                                 <input 
+                                    ${filter?.status === 'All statuses' ? 'checked' : ''}
+                                    id="status_all_statuses"
+                                    class="filter__select__input"
+                                    name="status"
+                                    type="radio"
+                                    value="All statuses"
+                                />
+                                 <label class="filter__select__label" for="status_all_statuses">All statuses</label>
+                            </div>
+                         
+                            <div class="filter__select__item">
+                                 <input
+                                    ${filter?.status === 'Alive' ? 'checked' : ''} 
+                                    id="status_alive"
+                                    class="filter__select__input"
+                                    name="status"
+                                    type="radio"
+                                    value="Alive"
+                                 />
+                                 <label class="filter__select__label" for="status_alive">Alive</label>
+                            </div>
+                            
+                             <div class="filter__select__item">
+                                  <input 
+                                    ${filter?.status === 'Presumed dead' ? 'checked' : ''} 
+                                    id="status_presumed_dead"
+                                    class="filter__select__input"
+                                    name="status"
+                                    type="radio"
+                                    value="Presumed dead"
+                                  />
+                                  <label class="filter__select__label" for="status_presumed_dead">Presumed dead</label>
+                            </div>
+                            
+                             <div class="filter__select__item">
+                                  <input 
+                                    ${filter?.status === 'Deceased' ? 'checked' : ''} 
+                                    id="status_deceased"
+                                    class="filter__select__input"
+                                    name="status"
+                                    type="radio"
+                                    value="Deceased"
+                                  />
+                                  <label class="filter__select__label" for="status_deceased">Deceased</label>
+                            </div>
                         </div>
-                        
-                         <div class="filter__select__item">
-                              <input class="filter__select__input" name="filter_status" type="radio" value="Presumed Dead"/>
-                              <label class="filter__select__label" for="Season_4">Season 4</label>
-                        </div>
-                       
                     </div>
                 </div>
                 
+                <button class="filter__search_button">
+                    Search
+                </button>
             </div>`
         );
     }

@@ -9,7 +9,8 @@
     "baseUrl": "./",
     "paths": {
       "base-component": ["src/utils/BaseComponent"],
-      "useFilter": ["src/utils/useFilter"]
+      "useFilter": ["src/utils/useFilter"],
+      "client": ["src/utils/client"]
     }
   },
 }

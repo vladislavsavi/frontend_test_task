@@ -1,7 +1,8 @@
 import {FilterModel} from './models';
 
 const initialFilter: FilterModel = {
-    seasons: {1: false, 2: false, 3: false, 4: false}
+    seasons: {1: false, 2: false, 3: false, 4: false},
+    status: 'All statuses'
 }
 
 export class Filter implements FilterModel{
@@ -9,6 +10,7 @@ export class Filter implements FilterModel{
     private static readonly localStorageKey = 'character_filter'
 
     public seasons:  {[key: string]: boolean}
+    public status: 'All statuses' | 'Alive' | 'Presumed dead' | 'Deceased';
 
     private constructor(filter: FilterModel) {
         this.save = this.save.bind(this);
@@ -25,10 +27,11 @@ export class Filter implements FilterModel{
     }
 
     collect() {
-        const {seasons} = this;
+        const {seasons, status} = this;
 
         return {
-            seasons
+            seasons,
+            status
         }
     }
 
