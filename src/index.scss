@@ -11,4 +11,10 @@ header {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  color: #fff;
+}
+
+#content {
+  position: relative;
+  padding-bottom: 100px;
 }

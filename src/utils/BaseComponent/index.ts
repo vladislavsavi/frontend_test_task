@@ -19,9 +19,19 @@ export abstract class BaseComponent {
         this.render();
     }
 
+    mounted(): void {}
+
+    update() {
+        this.container.innerHTML = this.markup();
+        this.didUpdate();
+    }
+
+    didUpdate() {}
+
     abstract markup(): string;
 
     render() {
         this.container.innerHTML = this.markup();
+        this.mounted();
     }
 }

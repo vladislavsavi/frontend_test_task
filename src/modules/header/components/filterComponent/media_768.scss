@@ -1,0 +1,15 @@
+@media (max-width: 768px){
+  .filter__status__wrapper + .filter__search_button {
+    margin-left: 0;
+  }
+  .filter__search_button {
+    width: 100%;
+    margin-top: 20px;
+  }
+  .filter__status {
+    &__wrapper {
+      flex-grow: 1;
+      width: 1px;
+    }
+  }
+}

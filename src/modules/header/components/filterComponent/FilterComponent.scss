@@ -1,28 +1,123 @@
-.filter {
-  &__wrapper {
+.filter__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  color: #000;
+  h3 {
+    color: #ffff;
   }
-  &__seasons {
+}
+
+.filter__seasons {
+  display: flex;
+  &__wrapper {
+    flex-grow: 1;
+  }
+
+  &__button + &__button {
+    margin-left: 10px;
+  }
+  &__button {
     display: flex;
-    &__button + &__button {
-      margin-left: 10px;
+    flex-grow: 1;
+  }
+  &__label {
+    width: 100%;
+    cursor: pointer;
+    padding: 10px;
+    white-space: nowrap;
+    display: inline-block;
+    background: #FFFF;
+    border-radius: 5px;
+    font-size: 14px;
+    user-select: none;
+    opacity: 0.7;
+  }
+  &__input{
+    display: none;
+  }
+  &__input:checked ~ &__label {
+    opacity: 1;
+  }
+}
+
+.filter__select {
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+  &:after {
+    content: "";
+    display: block;
+    width: 7px;
+    height: 7px;
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    border-right: 2px solid #c3bebe;
+    border-bottom: 2px solid #c3bebe;
+    transform: rotate(45deg);
+  }
+  &__input {
+    display: none;
+  }
+  &__value {
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    outline: none;
+    height: 40px;
+    border-radius: 5px;
+    padding: 0 20px;
+  }
+  &__dropdown{
+    border-top: 2px solid #eee ;
+    width: 100%;
+    display: none;
+    position: absolute;
+    background-color: #ffff;
+    left: 0;
+    top: 40px;
+    box-shadow: 3px 14px 10px 5px rgba(0,0,0,0.21);
+  }
+  &__item{
+    display: flex;
+    flex-direction: column;
+  }
+  &__label {
+    cursor: pointer;
+    padding: 10px;
+    &:hover {
+      background-color: #eee;
     }
-    &__label {
-      cursor: pointer;
-      padding: 10px;
-      white-space: nowrap;
-      display: inline-block;
-      background: #FFFF;
-      border-radius: 5px;
-      font-size: 14px;
-      user-select: none;
-      opacity: 0.7;
+  }
+  &__input:checked ~ &__label {
+    background-color: #eee;
+  }
+  &_open {
+    .filter__select__dropdown {
+      display: block;
     }
-    &__input{
-      display: none;
+    .filter__select__value {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
     }
   }
 }
 
-.filter__seasons__input:checked ~ .filter__seasons__label {
-  opacity: 1;
+.filter__search_button {
+  cursor: pointer;
+  flex-grow: 1;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  background-color: #edbd37;
 }
+
+.filter__status__wrapper + .filter__search_button {
+  margin-left: 19px;
+}
+
+@import "media_1024";
+@import "media_768";
+@import "media_500";

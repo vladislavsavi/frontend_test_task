@@ -1,5 +1,7 @@
 import {BaseComponent} from 'base-component';
 
+import './loremComponent.scss';
+
 export class LoremComponent extends BaseComponent {
     markup(): string {
         return `<div  class="lorem__component__wrapper">

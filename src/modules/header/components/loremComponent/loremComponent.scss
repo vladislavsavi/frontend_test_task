@@ -1,11 +1,11 @@
 .lorem__component {
   &__wrapper {
     color: #FFFF;
+    padding-right: 60px;
   }
   &__title{
     margin: 0 0 10px 0;
   }
-  &__long_text {
-
-  }
 }
+
+@import "media_1024";
