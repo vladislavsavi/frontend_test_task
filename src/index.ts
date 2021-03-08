@@ -1,3 +1,6 @@
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+
 import {Header, CharacterList} from './modules'
 
 import './index.scss';

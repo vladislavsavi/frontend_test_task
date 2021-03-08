@@ -29,7 +29,6 @@ class _CharacterList extends BaseComponent {
     loadData() {
         this.loading = true;
         this.update();
-        console.log(this.limit, );
         getCharacters(this.limit)
             .then((characters) => {
                 this.characters = characters;

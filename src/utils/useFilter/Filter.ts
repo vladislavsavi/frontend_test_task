@@ -22,7 +22,6 @@ export class Filter implements FilterModel{
         if (!Filter.instance) {
             Filter.instance = new Filter(savedFilter ? savedFilter : initialFilter);
         }
-
         return Filter.instance;
     }
 
