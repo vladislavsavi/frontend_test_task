@@ -4,9 +4,12 @@ import {useFilter, FilterModel} from 'useFilter';
 
 import './FilterComponent.scss';
 
-class _FilterComponent extends BaseComponent {
-    private readonly filter: FilterModel;
+interface FilterComponentModel {
+    filter?: FilterModel;
+}
 
+class _FilterComponent extends BaseComponent {
+    [x: string]: any;
     constructor(container: HTMLBaseElement) {
         super(container);
     }
@@ -17,9 +20,14 @@ class _FilterComponent extends BaseComponent {
         this.parseButton();
     }
 
+    didUpdate() {
+        this.parseCheckboxes();
+        this.parseSelect();
+        this.parseButton();
+    }
+
     parseCheckboxes() {
         const checkboxList = document.querySelectorAll('[name="season"]');
-
         checkboxList.forEach(elem => elem.addEventListener('click', (e) => {
             const value = (e.target as HTMLInputElement).value;
             this.filter.seasons[value] = !this.filter.seasons[value];
