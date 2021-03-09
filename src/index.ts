@@ -1,5 +1,5 @@
-import "core-js/stable";
-import "regenerator-runtime/runtime";
+import "core-js";
+import "regenerator-runtime";
 
 import {Header, CharacterList} from './modules'
 

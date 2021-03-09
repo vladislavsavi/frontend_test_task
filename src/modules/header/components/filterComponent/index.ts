@@ -2,7 +2,7 @@ import {BaseComponent} from 'base-component';
 
 import {useFilter, FilterModel} from 'useFilter';
 
-import './FilterComponent.scss';
+import './styles/FilterComponent.scss';
 
 interface FilterComponentModel {
     filter?: FilterModel;

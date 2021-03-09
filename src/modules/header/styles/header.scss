@@ -1,7 +1,15 @@
 .header {
   &__wrapper{
     display: flex;
+    width: 100%;
     flex-wrap: nowrap;
+  }
+  &__lorem {
+    width: 56%;
+    padding-right: 100px;
+  }
+  &__filter {
+    max-width: 430px;
   }
 }
 

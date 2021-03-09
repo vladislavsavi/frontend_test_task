@@ -2,14 +2,22 @@
   .filter__status__wrapper + .filter__search_button {
     margin-left: 0;
   }
+  .filter__seasons {
+    &__wrapper {
+      width: 50%;
+      min-width: 385px;
+    }
+  }
+  .filter__seasons__button + .filter__seasons__button {
+    width: 2%;
+  }
   .filter__search_button {
     width: 100%;
     margin-top: 20px;
   }
   .filter__status {
     &__wrapper {
-      flex-grow: 1;
-      width: 1px;
+      width: 20vmax;
     }
   }
 }
