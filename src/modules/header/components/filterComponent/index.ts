@@ -2,6 +2,8 @@ import {BaseComponent} from 'base-component';
 
 import {useFilter, FilterModel} from 'useFilter';
 
+import {CharacterList} from '../../../characters'
+
 import './styles/FilterComponent.scss';
 
 interface FilterComponentModel {
@@ -56,7 +58,9 @@ class _FilterComponent extends BaseComponent {
 
     parseButton() {
         const searchBtn = document.querySelector('.filter__search_button');
-        searchBtn.addEventListener('click', this.filter.save);
+        searchBtn.addEventListener('click', () => {
+            this.filter.save();
+        });
     }
 
     markup(): string {

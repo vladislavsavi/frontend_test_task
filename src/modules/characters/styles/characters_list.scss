@@ -1,0 +1,27 @@
+.characters_list__wrapper {
+  box-sizing: border-box;
+}
+
+.character{
+  min-height: 600px;
+  width: calc(20% - 29px);
+  margin: 20px 0 0 20px;
+  display: inline-block;
+  vertical-align: top;
+  border: 2px solid #eee;
+  h3, p {
+    padding: 0 10px;
+  }
+  &__img {
+    width: 100%;
+    height: 300px;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+@import "media_1024";
+@import "media_768";
+@import "media_685";
+@import "media_455";

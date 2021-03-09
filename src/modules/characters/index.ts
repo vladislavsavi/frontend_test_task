@@ -1,8 +1,11 @@
 import {BaseComponent} from 'base-component';
-import {useFilter} from 'useFilter';
+import {useFilter, FilterModel} from 'useFilter';
 import {getCharacters} from 'client';
 
 import {loader} from "./components";
+import {CharacterModel} from './models';
+
+import './styles/characters_list.scss'
 
 function debounce(f: Function, ms: number) {
     let isCooldown = false;
@@ -19,7 +22,8 @@ function debounce(f: Function, ms: number) {
 }
 
 class _CharacterList extends BaseComponent {
-    characters: any = null
+    [x: string]: any | FilterModel;
+    characters: CharacterModel[] = [];
     loading:boolean = false;
     limit: number = 10;
     strideLength: number = 10;
@@ -30,7 +34,7 @@ class _CharacterList extends BaseComponent {
         this.loading = true;
         this.update();
         getCharacters(this.limit)
-            .then((characters) => {
+            .then((characters: CharacterModel[]) => {
                 this.characters = characters;
                 this.loading = false;
                 this.update();
@@ -47,7 +51,7 @@ class _CharacterList extends BaseComponent {
     onScrollHandler() {
         window.addEventListener('scroll', () => {
             const windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
-            if (windowRelativeBottom <= document.documentElement.clientHeight) {
+            if (Math.floor(windowRelativeBottom)  <= Math.floor(document.documentElement.clientHeight)) {
                this.debouncedLoadData();
             }
         })
@@ -56,10 +60,52 @@ class _CharacterList extends BaseComponent {
     mounted() {
         this.loadData();
         this.onScrollHandler();
+        this.filter.subscribe(this.update.bind(this));
+    }
+
+
+    filterBySeasons(characters: CharacterModel[]) {
+        let result = characters;
+        Object.keys(this.filter.seasons).forEach((key) => {
+            if(this.filter.seasons[key]) {
+                result = characters.filter((item) => item.appearance.some((season) => key === season.toString()));
+            }
+        })
+        return result;
+    }
+
+    filterByStatus(characters: CharacterModel[]) {
+        if(this.filter.status === 'All statuses') {
+            return characters;
+        }
+        return characters.filter((item) => item.status.toUpperCase() === this.filter.status.toUpperCase());
+    }
+
+    filteredCharacters() {
+        if(!this.filter) {
+            return this.characters;
+        }
+        if(this.filter.status === 'All statuses' && !this.filter.seasons) {
+            return this.characters;
+        }
+
+        const filteredByStatus = this.filterByStatus(this.characters)
+        return this.filterBySeasons(filteredByStatus);
     }
 
     renderList() {
-        return this.characters.map((item: any) => `<li>${item.char_id}: ${item.name}</li>`).join('');
+        return this.filteredCharacters().map((item: CharacterModel) => (
+            `<div class="character">
+                <div class="character__wrapper">
+                    <h3>${item.name}</h3>
+                    <div class="character__img" style="background-image: url('${item.img}')"></div>
+                    <p>Nickname: <span>${item.nickname}</span></p>
+                    <p>Status: <span>${item.status}</span></p>
+                    <p>Occupation: <span>${item.occupation}</span></p>
+                    <p>Appearance: <span>${item.appearance.join(', ')}</span></p>
+                </div>
+            </div>`
+        )).join('').trim().replace('\n', '');
     }
 
     markup(): string {
@@ -67,9 +113,9 @@ class _CharacterList extends BaseComponent {
             return loader;
         }
         return (
-            `<ul>
+            `<div class="characters_list__wrapper">
                 ${this.renderList()}
-            </ul>
+            </div>
             ${this.loading ? loader : ''}`
         )
     }

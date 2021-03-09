@@ -11,6 +11,7 @@ export class Filter implements FilterModel{
 
     public seasons:  {[key: string]: boolean}
     public status: 'All statuses' | 'Alive' | 'Presumed dead' | 'Deceased';
+    private static updateSubscriber: () => void;
 
     private constructor(filter: FilterModel) {
         this.save = this.save.bind(this);
@@ -25,6 +26,10 @@ export class Filter implements FilterModel{
         return Filter.instance;
     }
 
+    subscribe(update: any) {
+        Filter.updateSubscriber = update;
+    }
+
     collect() {
         const {seasons, status} = this;
 
@@ -36,5 +41,6 @@ export class Filter implements FilterModel{
 
     save() {
         localStorage.setItem(Filter.localStorageKey, JSON.stringify(this.collect()));
+        Filter.updateSubscriber();
     }
 }
