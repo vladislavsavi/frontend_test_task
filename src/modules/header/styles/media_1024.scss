@@ -1,0 +1,14 @@
+@media (max-width: 1024px){
+  .header {
+    &__wrapper{
+      flex-direction: column;
+    }
+    &__lorem {
+      width: 100%;
+      padding-right: 0;
+    }
+    &__filter {
+      max-width: 100%;
+    }
+  }
+}

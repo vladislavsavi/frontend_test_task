@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 module.exports = {
-    entry: ['@babel/polyfill', './src/index.ts'],
+    entry: ['whatwg-fetch', './src/index.ts'],
     devtool: 'eval-source-map',
     resolve: {
         extensions: ['.ts', '.js'],

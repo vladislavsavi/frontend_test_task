@@ -1,0 +1,12 @@
+@media (max-width: 560px){
+  .filter__seasons__wrapper {
+    width: 100%;
+    min-width: initial;
+  }
+  .filter__status {
+    &__wrapper {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+}
