@@ -68,8 +68,11 @@
     display: none;
   }
   &__value {
+    box-sizing: border-box;
     cursor: pointer;
     width: 100%;
+    background: #FFFFFF;
+    color: black;
     border: none;
     outline: none;
     height: 40px;
@@ -90,8 +93,11 @@
   &__item{
     display: flex;
     flex-direction: column;
+    height: auto;
   }
   &__label {
+    display: flex;
+    box-sizing: border-box;
     color: #000;
     cursor: pointer;
     padding: 10px;

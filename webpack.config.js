@@ -11,6 +11,7 @@ module.exports = {
             'base-component': path.resolve(__dirname, 'src/utils/BaseComponent'),
             'useFilter': path.resolve(__dirname, 'src/utils/useFilter'),
             'client': path.resolve(__dirname, 'src/utils/client'),
+            'isIE': path.resolve(__dirname, 'src/utils/isIE'),
         }
     },
     module: {
@@ -38,5 +39,5 @@ module.exports = {
         new HtmlWebpackPlugin({template: "./assets/template.html"}),
         new MiniCssExtractPlugin({filename: "dist/[name].css"}),
         require('autoprefixer')
-    ],
+    ]
 };

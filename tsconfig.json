@@ -10,7 +10,8 @@
     "paths": {
       "base-component": ["src/utils/BaseComponent"],
       "useFilter": ["src/utils/useFilter"],
-      "client": ["src/utils/client"]
+      "client": ["src/utils/client"],
+      "isIE": ["src/utils/isIE"]
     }
   },
 }

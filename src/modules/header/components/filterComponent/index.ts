@@ -12,9 +12,6 @@ interface FilterComponentModel {
 
 class _FilterComponent extends BaseComponent {
     [x: string]: any;
-    constructor(container: HTMLBaseElement) {
-        super(container);
-    }
 
     mounted() {
         this.parseCheckboxes();
