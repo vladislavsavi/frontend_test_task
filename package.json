@@ -34,8 +34,5 @@
     "@babel/preset-typescript": "^7.13.0",
     "babel-loader": "^8.2.2",
     "webpack-dev-server": "^3.11.2"
-  },
-  "browserslist": [
-    "IE 11"
-  ]
+  }
 }
