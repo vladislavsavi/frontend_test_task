@@ -12,7 +12,7 @@ export class Header extends BaseComponent {
         this.container.innerHTML = this.markup();
         this.loremContainer = this.container.querySelector('.header__lorem');
         this.filterContainer = this.container.querySelector('.header__filter');
-        new LoremComponent(this.loremContainer);
+        new (LoremComponent as any)(this.loremContainer);
         new (FilterComponent as any)(this.filterContainer);
     }
 

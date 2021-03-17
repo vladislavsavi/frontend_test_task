@@ -29,6 +29,7 @@ class _FilterComponent extends BaseComponent {
         const checkboxList = document.querySelectorAll('[name="season"]');
         checkboxList.forEach(elem => elem.addEventListener('click', (e) => {
             const value = (e.target as HTMLInputElement).value;
+
             this.filter.seasons[value] = !this.filter.seasons[value];
         }));
     }
@@ -39,11 +40,12 @@ class _FilterComponent extends BaseComponent {
 
         selectWrapper.addEventListener('click', (e) => {
             e.stopPropagation();
-            selectWrapper.classList.add('filter__select_open')
+            selectWrapper.className +='filter__select_open';
         });
         window.addEventListener('click', (e) => {
             e.stopPropagation();
-            selectWrapper.classList.remove('filter__select_open');
+            const classArr: string[] = selectWrapper.className.split(' ');
+            selectWrapper.className = classArr.filter(className => className !== 'filter__select_open').join(' ');
         });
 
         selectItems.forEach(elem => elem.addEventListener('click', (e) => {
@@ -121,10 +123,10 @@ class _FilterComponent extends BaseComponent {
                 <div class="filter__status__wrapper">
                       <h3>Status:</h3>
                      <div class="filter__select">
-                        <input class="filter__select__value" type="text" readonly value="${this.filter.status}">
+                        <div class="filter__select__value">${this.filter.status}</div>
                         <div class="filter__select__dropdown">
                             <div class="filter__select__item">
-                                 <input 
+                                 <div
                                     ${filter?.status === 'All statuses' ? 'checked' : ''}
                                     id="status_all_statuses"
                                     class="filter__select__input"

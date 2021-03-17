@@ -6,6 +6,7 @@ import {loader} from "./components";
 import {CharacterModel} from './models';
 
 import './styles/characters_list.scss'
+import {isIE} from "isIE";
 
 function debounce(f: Function, ms: number) {
     let isCooldown = false;
@@ -50,8 +51,7 @@ class _CharacterList extends BaseComponent {
 
     onScrollHandler() {
         window.addEventListener('scroll', () => {
-            const windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
-            if (Math.floor(windowRelativeBottom)  <= Math.floor(document.documentElement.clientHeight)) {
+            if (document.body.scrollHeight - document.documentElement.scrollTop <= document.documentElement.clientHeight) {
                this.debouncedLoadData();
             }
         })
@@ -108,15 +108,25 @@ class _CharacterList extends BaseComponent {
         )).join('').trim().replace('\n', '');
     }
 
+    renderLoader() {
+        if(this.loading) {
+            if(isIE() &&  isIE() < 10) {
+                return '<p style="text-align: center">loading...</p>'
+            }
+            return loader
+        }
+        return ''
+    }
+
     markup(): string {
         if(!this.characters) {
-            return loader;
+            return this.renderLoader();
         }
         return (
             `<div class="characters_list__wrapper">
                 ${this.renderList()}
             </div>
-            ${this.loading ? loader : ''}`
+            ${this.renderLoader()}`
         )
     }
 }
