@@ -3,6 +3,7 @@ import {BaseComponent} from 'base-component';
 import {LoremComponent, FilterComponent} from "./components";
 
 import './styles/header.scss';
+import {isIE} from "isIE";
 
 export class Header extends BaseComponent {
     private loremContainer: HTMLBaseElement;
@@ -17,6 +18,14 @@ export class Header extends BaseComponent {
     }
 
     markup(): string {
+        if(document.documentElement.clientWidth <= 500) {
+            return (
+                `<div class="header__wrapper">
+                    <div class="header__filter"></div>
+                    <div class="header__lorem"></div>
+                </div>`
+            )
+        }
         return (
             `<div class="header__wrapper">
                 <div class="header__lorem"></div>

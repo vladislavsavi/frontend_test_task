@@ -1,14 +1,8 @@
 import {BaseComponent} from 'base-component';
 
-import {useFilter, FilterModel} from 'useFilter';
-
-import {CharacterList} from '../../../characters'
+import {useFilter} from 'useFilter';
 
 import './styles/FilterComponent.scss';
-
-interface FilterComponentModel {
-    filter?: FilterModel;
-}
 
 class _FilterComponent extends BaseComponent {
     [x: string]: any;
@@ -40,7 +34,9 @@ class _FilterComponent extends BaseComponent {
 
         selectWrapper.addEventListener('click', (e) => {
             e.stopPropagation();
-            selectWrapper.className +='filter__select_open';
+            if(!selectWrapper.className.includes('filter__select_open')){
+                selectWrapper.className +=' filter__select_open';
+            }
         });
         window.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -125,18 +121,19 @@ class _FilterComponent extends BaseComponent {
                      <div class="filter__select">
                         <div class="filter__select__value">${this.filter.status}</div>
                         <div class="filter__select__dropdown">
+
                             <div class="filter__select__item">
-                                 <div
-                                    ${filter?.status === 'All statuses' ? 'checked' : ''}
+                                 <input
+                                    ${filter?.status === 'All statuses' ? 'checked' : ''} 
                                     id="status_all_statuses"
                                     class="filter__select__input"
                                     name="status"
                                     type="radio"
                                     value="All statuses"
-                                />
+                                 />
                                  <label class="filter__select__label" for="status_all_statuses">All statuses</label>
-                            </div>
-                         
+                            </div>       
+                                              
                             <div class="filter__select__item">
                                  <input
                                     ${filter?.status === 'Alive' ? 'checked' : ''} 
